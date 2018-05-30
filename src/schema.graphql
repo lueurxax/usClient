@@ -1,0 +1,80 @@
+scalar Upload
+
+type Query {
+  me: User
+  instancesByBarcode(barcodes: [String!]): [Instance]
+  goodsByMemberCard(barcode: String!): MemberCard
+}
+
+type Mutation {
+  login(email: String!, password: String!): AuthPayload!
+  sale(barcode: String!): Int
+}
+
+type AuthPayload {
+  token: String!
+  user: User!
+}
+
+type User {
+  id: ID!
+  email: String
+  password: String
+}
+
+type Instance{
+  barcode: String!
+  cardId: String!
+  id: ID!
+  img: String
+  mId: String!
+  oneCId: String!
+  newOneCId: String!
+  manufacturer: String!
+  type: String!
+  probe: String!
+  weight: Float
+  tags: [String]!
+  cost: Cost
+}
+
+type Cost {
+  id: ID!
+  retail: Float
+  prime: Float
+  costOfWork: Float
+  instance: Instance
+}
+
+type MemberCard {
+  id: ID!
+  member: Member
+  goods: [Goods!]
+}
+
+type Member {
+  id: ID!
+  tel: String
+  fullname: String
+  grams: Pocket
+}
+
+type Goods {
+  cardId: String!
+  id: ID!
+  img: String
+  mId: String!
+  oneCId: String!
+  newOneCId: String!
+  manufacturer: String!
+  type: String!
+  probe: String!
+  weight: Float
+}
+
+type Pocket {
+  id: ID!
+  usual: Int
+  super: Int
+  owner: Member!
+}
