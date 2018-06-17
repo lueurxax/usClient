@@ -8,7 +8,6 @@ RUN mkdir -p /home/app/usclient
 WORKDIR /home/app/usclient/
 
 COPY ./ /home/app/usclient/
-RUN rm /home/app/usclient/.env*
 RUN node -v
 RUN cd /home/app/usclient/ && yarn && yarn cache clean
 
