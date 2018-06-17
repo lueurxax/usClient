@@ -3,6 +3,7 @@ const _ = require('lodash');
 const memberInfo = `
 {
   id
+  type
   member{
     id
     fullname
@@ -46,8 +47,8 @@ const memberCard = {
   goodsByMemberCard: async (parent, { barcode }, ctx, info) => {
     console.log('barcode: ', barcode);
     if (!barcode) return null;
-    const memberCard = await ctx.db.query.goodsByMemberCard({ barcode }, ctx.request, memberInfo);
-    let result = _.pick(memberCard, ['id', 'member']);
+    const memberCard = await ctx.db.query.goodsByMemberCard({ barcode }, memberInfo);
+    let result = _.pick(memberCard, ['id', 'type', 'member']);
     result.goods = [];
     memberCard.orders.forEach(order => {
       const goods = order.goods.map(g => {

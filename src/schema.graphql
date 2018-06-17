@@ -50,6 +50,7 @@ type MemberCard {
   id: ID!
   member: Member
   goods: [Goods!]
+  type: MemberCardType!
 }
 
 type Member {
@@ -77,4 +78,11 @@ type Pocket {
   usual: Int
   super: Int
   owner: Member!
+}
+
+enum MemberCardType {
+  Ag
+  Au
+  Pt
+  Old
 }

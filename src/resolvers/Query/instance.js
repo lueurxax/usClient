@@ -37,7 +37,7 @@ const instance = {
   instancesByBarcode: async (parent, { barcodes }, ctx, info) => {
     if (!barcodes.length) return null;
     console.log(barcodes);
-    const instances = await ctx.db.query.instancesByBarcode({ barcodes }, ctx.request, instanceInfo);
+    const instances = await ctx.db.query.instancesByBarcode({ barcodes }, instanceInfo);
     console.log(instances.length);
     return instances.map(instance => {
       const tags = _.get(instance, 'tags[0]');
